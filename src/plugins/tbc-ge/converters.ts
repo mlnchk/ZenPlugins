@@ -146,6 +146,12 @@ export function convertTransactionsV2 (transactionRecordsByDate: TransactionsByD
       if (transactionRecord.currency !== data.currency) {
         continue
       }
+
+      // sometimes titles are not present or empty and syncronization breaks
+      if (!transaction.title) {
+        continue
+      }
+
       let amount: number | null = null
       let merchant: Merchant | null = null
       let secondMovement: Movement | null = null
